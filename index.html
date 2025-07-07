@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>베스트샷 AI - 사진들을 즉시 정리하세요</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#6366f1",
+              secondary: "#8b5cf6",
+              accent: "#06b6d4",
+              "soft-blue": "#f0f9ff",
+              "soft-purple": "#faf5ff",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-white">
+    <!-- Navigation -->
+    <nav
+      class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-100"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <h1 class="text-2xl font-bold text-primary">BestShot AI</h1>
+          </div>
+          <div class="hidden md:flex items-center space-x-8">
+            <a
+              href="#features"
+              class="text-gray-600 hover:text-primary transition-colors"
+              >기능</a
+            >
+            <a
+              href="#testimonials"
+              class="text-gray-600 hover:text-primary transition-colors"
+              >후기</a
+            >
+            <a
+              href="#faq"
+              class="text-gray-600 hover:text-primary transition-colors"
+              >FAQ</a
+            >
+            <a
+              href="#contact"
+              class="text-gray-600 hover:text-primary transition-colors"
+              >문의</a
+            >
+          </div>
+          <button
+            id="getStartedNav"
+            class="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary/90 transition-colors"
+          >
+            무료로 시작하기
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      class="pt-20 pb-16 bg-gradient-to-br from-soft-blue to-soft-purple"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h2 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+            사진들을 <span class="text-primary">즉시</span> 정리하세요.
+          </h2>
+          <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            AI가 최고의 추억을 찾아드리는 동안 편안히 쉬세요. 수천 장의 사진을
+            몇 초 만에 정리합니다.
+          </p>
+          <div class="flex flex-col sm:flex-row justify-center gap-4 mb-12">
+            <button
+              id="getStartedHero"
+              class="bg-primary text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-primary/90 transition-colors"
+            >
+              <i class="fas fa-rocket mr-2"></i>무료로 시작하기
+            </button>
+            <button
+              id="watchDemo"
+              class="border border-primary text-primary px-8 py-4 rounded-full text-lg font-semibold hover:bg-primary hover:text-white transition-colors"
+            >
+              <i class="fas fa-play mr-2"></i>데모 보기
+            </button>
+          </div>
+          <div class="relative max-w-4xl mx-auto">
+            <div class="bg-white rounded-2xl shadow-2xl p-8">
+              <div class="grid grid-cols-2 gap-8">
+                <div class="text-center">
+                  <h3 class="text-lg font-semibold text-gray-900 mb-4">전</h3>
+                  <div
+                    class="bg-gray-100 rounded-lg p-4 h-64 flex flex-col justify-center"
+                  >
+                    <i class="fas fa-images text-4xl text-gray-400 mb-2"></i>
+                    <p class="text-sm text-gray-600">
+                      10,247장의 어수선한 사진
+                    </p>
+                    <p class="text-xs text-gray-500 mt-1">
+                      흐릿함, 중복, 눈 감음
+                    </p>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <h3 class="text-lg font-semibold text-gray-900 mb-4">후</h3>
+                  <div
+                    class="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg p-4 h-64 flex flex-col justify-center"
+                  >
+                    <i class="fas fa-star text-4xl text-primary mb-2"></i>
+                    <p class="text-sm text-gray-600">2,156장의 최고 순간</p>
+                    <p class="text-xs text-gray-500 mt-1">
+                      정리된, 선명한, 아름다운
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem & Solution -->
+    <section class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h3 class="text-3xl font-bold text-gray-900 mb-6">문제점</h3>
+            <p class="text-lg text-gray-600 mb-8">
+              여행을 다녀올 때마다 갤러리는 어수선하고 흐릿하거나 중복된
+              사진들로 가득합니다. 수천 장의 이미지를 수동으로 정리하다가 중간에
+              포기하게 됩니다.
+            </p>
+            <div class="space-y-4">
+              <div class="flex items-center text-gray-600">
+                <i class="fas fa-times-circle text-red-500 mr-3"></i>
+                <span>수백 장의 흐릿하거나 기울어진 사진</span>
+              </div>
+              <div class="flex items-center text-gray-600">
+                <i class="fas fa-times-circle text-red-500 mr-3"></i>
+                <span>같은 순간의 여러 비슷한 사진들</span>
+              </div>
+              <div class="flex items-center text-gray-600">
+                <i class="fas fa-times-circle text-red-500 mr-3"></i>
+                <span>눈을 감았거나 조명이 나쁜 사진</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-3xl font-bold text-gray-900 mb-6">해결책</h3>
+            <p class="text-lg text-gray-600 mb-8">
+              AI가 몇 초 만에 정리해줍니다. 최고의 사진들을 영리하게 선택하고
+              나머지는 정리합니다. 정리 대신 추억을 즐기는 데 집중하세요.
+            </p>
+            <div class="space-y-4">
+              <div class="flex items-center text-gray-600">
+                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                <span>AI가 품질이 낮은 사진을 감지하고 제거</span>
+              </div>
+              <div class="flex items-center text-gray-600">
+                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                <span>비슷한 사진들 중 최고를 자동으로 선택</span>
+              </div>
+              <div class="flex items-center text-gray-600">
+                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                <span>인물과 순간별로 사진을 정리</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Features -->
+    <section id="features" class="py-16 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">강력한 기능들</h2>
+          <p class="text-xl text-gray-600">
+            사진을 지능적으로 정리하는 데 필요한 모든 것
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white rounded-xl p-6 shadow-lg">
+            <div
+              class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4"
+            >
+              <i class="fas fa-shield-alt text-primary text-xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">기기 내 AI</h3>
+            <p class="text-gray-600">
+              사진이 기기를 벗어나지 않습니다. 완전한 개인정보 보호와 보안을
+              보장합니다.
+            </p>
+          </div>
+          <div class="bg-white rounded-xl p-6 shadow-lg">
+            <div
+              class="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4"
+            >
+              <i class="fas fa-eye text-secondary text-xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">
+              스마트 감지
+            </h3>
+            <p class="text-gray-600">
+              흐릿하거나 기울어진 사진, 눈을 감은 사진을 자동으로 식별하여
+              제거합니다.
+            </p>
+          </div>
+          <div class="bg-white rounded-xl p-6 shadow-lg">
+            <div
+              class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4"
+            >
+              <i class="fas fa-clone text-accent text-xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">중복 제거</h3>
+            <p class="text-gray-600">
+              유사한 사진들을 찾아 각 순간의 가장 좋은 버전만 남깁니다.
+            </p>
+          </div>
+          <div class="bg-white rounded-xl p-6 shadow-lg">
+            <div
+              class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4"
+            >
+              <i class="fas fa-users text-primary text-xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">
+              인물별 정리
+            </h3>
+            <p class="text-gray-600">
+              인물별로 사진을 정리하고, 포즈와 조명에 따라 최고의 사진을
+              선택합니다.
+            </p>
+          </div>
+          <div class="bg-white rounded-xl p-6 shadow-lg">
+            <div
+              class="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4"
+            >
+              <i class="fas fa-mobile-alt text-secondary text-xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">
+              크로스 플랫폼
+            </h3>
+            <p class="text-gray-600">
+              Android와 iOS에서 모두 사용할 수 있으며 원활한 동기화를
+              제공합니다.
+            </p>
+          </div>
+          <div class="bg-white rounded-xl p-6 shadow-lg">
+            <div
+              class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4"
+            >
+              <i class="fas fa-cloud text-accent text-xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">
+              선택적 클라우드 동기화
+            </h3>
+            <p class="text-gray-600">
+              처리는 기기에서 하면서 Google Drive나 iCloud에 백업할 수 있습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">비교 분석</h2>
+          <p class="text-xl text-gray-600">
+            BestShot AI가 사진 정리에 최고의 선택인 이유를 살펴보세요
+          </p>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full bg-white rounded-xl shadow-lg">
+            <thead class="bg-gray-50">
+              <tr>
+                <th
+                  class="px-6 py-4 text-left text-sm font-semibold text-gray-900"
+                >
+                  기능
+                </th>
+                <th
+                  class="px-6 py-4 text-center text-sm font-semibold text-primary"
+                >
+                  BestShot AI
+                </th>
+                <th
+                  class="px-6 py-4 text-center text-sm font-semibold text-gray-900"
+                >
+                  Google Photos
+                </th>
+                <th
+                  class="px-6 py-4 text-center text-sm font-semibold text-gray-900"
+                >
+                  Apple Photos
+                </th>
+                <th
+                  class="px-6 py-4 text-center text-sm font-semibold text-gray-900"
+                >
+                  Ollie
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              <tr>
+                <td class="px-6 py-4 text-sm text-gray-900">기기 내 AI</td>
+                <td class="px-6 py-4 text-center">
+                  <i class="fas fa-check text-green-500"></i>
+                </td>
+                <td class="px-6 py-4 text-center">
+                  <i class="fas fa-times text-red-500"></i>
+                </td>
+                <td class="px-6 py-4 text-center">
+                  <i class="fas fa-check text-green-500"></i>
+                </td>
+                <td class="px-6 py-4 text-center">
+                  <i class="fas fa-times text-red-500"></i>
+                </td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 text-sm text-gray-900">DSLR/RAW 지원</td>
+                <td class="px-6 py-4 text-center">
+                  <i class="fas fa-check text-green-500"></i>
+                </td>
+                <td class="px-6 py-4 text-center">
+                  <i class="fas fa-times text-red-500"></i>
+                </td>
+                <td class="px-6 py-4 text-center">
+                  <i class="fas fa-check text-green-500"></i>
+                </td>
+                <td class="px-6 py-4 text-center">
+                  <i class="fas fa-times text-red-500"></i>
+                </td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 text-sm text-gray-900">중복 감지</td>
+                <td class="px-6 py-4 text-center">
+                  <i class="fas fa-check text-green-500"></i>
+                </td>
+                <td class="px-6 py-4 text-center">
+                  <i class="fas fa-check text-green-500"></i>
+                </td>
+                <td class="px-6 py-4 text-center">
+                  <i class="fas fa-times text-red-500"></i>
+                </td>
+                <td class="px-6 py-4 text-center">
+                  <i class="fas fa-check text-green-500"></i>
+                </td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 text-sm text-gray-900">품질 평가</td>
+                <td class="px-6 py-4 text-center">
+                  <i class="fas fa-check text-green-500"></i>
+                </td>
+                <td class="px-6 py-4 text-center">
+                  <i class="fas fa-times text-red-500"></i>
+                </td>
+                <td class="px-6 py-4 text-center">
+                  <i class="fas fa-times text-red-500"></i>
+                </td>
+                <td class="px-6 py-4 text-center">
+                  <i class="fas fa-check text-green-500"></i>
+                </td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 text-sm text-gray-900">크로스 플랫폼</td>
+                <td class="px-6 py-4 text-center">
+                  <i class="fas fa-check text-green-500"></i>
+                </td>
+                <td class="px-6 py-4 text-center">
+                  <i class="fas fa-check text-green-500"></i>
+                </td>
+                <td class="px-6 py-4 text-center">
+                  <i class="fas fa-times text-red-500"></i>
+                </td>
+                <td class="px-6 py-4 text-center">
+                  <i class="fas fa-check text-green-500"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Customer Testimonials -->
+    <section id="testimonials" class="py-16 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">사용자 후기</h2>
+          <p class="text-xl text-gray-600">
+            사진 라이브러리를 변화시킨 수천 명의 만족한 사용자들과 함께하세요
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white rounded-xl p-6 shadow-lg">
+            <div class="flex items-center mb-4">
+              <div class="text-yellow-400">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">
+              "지난 휴가에서 10,000장 이상의 사진을 찍었는데, 이 앱이 제
+              갤러리를 전혀 새롭게 만들어주었어요. 개인 사진 비서가 있는 것
+              같아요!"
+            </p>
+            <div class="flex items-center">
+              <div
+                class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3"
+              >
+                <i class="fas fa-user text-primary"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-gray-900">사라 첸</p>
+                <p class="text-sm text-gray-600">여행 블로거</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl p-6 shadow-lg">
+            <div class="flex items-center mb-4">
+              <div class="text-yellow-400">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">
+              "마침내 개인정보 보호를 이해하는 앱이에요. 모든 처리가 제
+              핸드폰에서 이루어지고, 결과가 놀랍습니다. 더 이상 끝없이 스크롤할
+              필요가 없어요!"
+            </p>
+            <div class="flex items-center">
+              <div
+                class="w-10 h-10 bg-secondary/10 rounded-full flex items-center justify-center mr-3"
+              >
+                <i class="fas fa-user text-secondary"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-gray-900">마이클 로드리게즈</p>
+                <p class="text-sm text-gray-600">사진작가</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl p-6 shadow-lg">
+            <div class="flex items-center mb-4">
+              <div class="text-yellow-400">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">
+              "인물별 정리 기능이 정말 대단해요! 가족 모임에서 찍은 아이들의
+              가장 좋은 사진들을 찾아주었어요. 몇 시간의 작업을 절약했어요."
+            </p>
+            <div class="flex items-center">
+              <div
+                class="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center mr-3"
+              >
+                <i class="fas fa-user text-accent"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-gray-900">에밀리 존슨</p>
+                <p class="text-sm text-gray-600">세 아이의 엄마</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-16 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">자주 묻는 질문</h2>
+          <p class="text-xl text-gray-600">
+            BestShot AI에 대해 알아야 할 모든 것
+          </p>
+        </div>
+        <div class="space-y-6">
+          <div class="faq-item bg-gray-50 rounded-xl p-6">
+            <button
+              class="faq-toggle w-full text-left flex justify-between items-center"
+            >
+              <h3 class="text-lg font-semibold text-gray-900">
+                제 데이터는 안전한가요?
+              </h3>
+              <i
+                class="fas fa-chevron-down text-gray-500 transition-transform"
+              ></i>
+            </button>
+            <div class="faq-content hidden mt-4">
+              <p class="text-gray-600">
+                물론입니다! 모든 AI 처리가 기기에서 직접 이루어집니다. 사진이
+                핸드폰이나 태블릿을 떠나지 않아 완전한 개인정보 보호와 보안을
+                보장합니다.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item bg-gray-50 rounded-xl p-6">
+            <button
+              class="faq-toggle w-full text-left flex justify-between items-center"
+            >
+              <h3 class="text-lg font-semibold text-gray-900">
+                오프라인에서도 작동하나요?
+              </h3>
+              <i
+                class="fas fa-chevron-down text-gray-500 transition-transform"
+              ></i>
+            </button>
+            <div class="faq-content hidden mt-4">
+              <p class="text-gray-600">
+                네! 모든 처리가 기기에서 이루어지기 때문에 인터넷 연결 없이도
+                사진을 정리할 수 있습니다. 클라우드 동기화는 선택사항입니다.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item bg-gray-50 rounded-xl p-6">
+            <button
+              class="faq-toggle w-full text-left flex justify-between items-center"
+            >
+              <h3 class="text-lg font-semibold text-gray-900">무료인가요?</h3>
+              <i
+                class="fas fa-chevron-down text-gray-500 transition-transform"
+              ></i>
+            </button>
+            <div class="faq-content hidden mt-4">
+              <p class="text-gray-600">
+                월 1,000장까지 처리할 수 있는 무료 버전을 제공합니다. 무제한
+                처리와 고급 기능을 위해서는 프리미엄 요금제로 업그레이드하세요.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item bg-gray-50 rounded-xl p-6">
+            <button
+              class="faq-toggle w-full text-left flex justify-between items-center"
+            >
+              <h3 class="text-lg font-semibold text-gray-900">
+                AI 제안을 취소할 수 있나요?
+              </h3>
+              <i
+                class="fas fa-chevron-down text-gray-500 transition-transform"
+              ></i>
+            </button>
+            <div class="faq-content hidden mt-4">
+              <p class="text-gray-600">
+                네! 적용하기 전에 모든 AI 제안을 검토할 수 있습니다. 사진이 먼저
+                "검토" 폴더로 이동되며, 한 번의 터치로 언제든지 사진을 복원할 수
+                있습니다.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item bg-gray-50 rounded-xl p-6">
+            <button
+              class="faq-toggle w-full text-left flex justify-between items-center"
+            >
+              <h3 class="text-lg font-semibold text-gray-900">
+                어떤 파일 형식을 지원하나요?
+              </h3>
+              <i
+                class="fas fa-chevron-down text-gray-500 transition-transform"
+              ></i>
+            </button>
+            <div class="faq-content hidden mt-4">
+              <p class="text-gray-600">
+                JPEG, PNG, HEIC와 DSLR 및 미러리스 카메라의 RAW 형식을 포함한
+                모든 주요 사진 형식을 지원합니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-primary/5">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">문의하기</h2>
+          <p class="text-xl text-gray-600">
+            궁금한 점이 있으시면 언제든지 연락주세요
+          </p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-xl p-8">
+          <form
+            action="https://formspree.io/f/mblyeawn"
+            method="POST"
+            class="space-y-6"
+          >
+            <div>
+              <label
+                for="email"
+                class="block text-sm font-medium text-gray-700 mb-2"
+                >이메일 주소</label
+              >
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="your@email.com"
+              />
+            </div>
+            <div>
+              <label
+                for="name"
+                class="block text-sm font-medium text-gray-700 mb-2"
+                >이름</label
+              >
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="홍길동"
+              />
+            </div>
+            <div>
+              <label
+                for="message"
+                class="block text-sm font-medium text-gray-700 mb-2"
+                >메시지</label
+              >
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="문의하고 싶은 내용을 입력해주세요..."
+              ></textarea>
+            </div>
+            <div class="text-center">
+              <button
+                type="submit"
+                class="bg-primary text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-primary/90 transition-colors"
+              >
+                <i class="fas fa-paper-plane mr-2"></i>메시지 보내기
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-8">
+          <div>
+            <h3 class="text-2xl font-bold text-primary mb-4">BestShot AI</h3>
+            <p class="text-gray-400 mb-4">
+              지능적인 AI 사진 정리로 카메라 롤을 정리하세요.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i class="fab fa-facebook"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i class="fab fa-linkedin"></i>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">제품</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors">기능</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors">가격</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >다운로드</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >릴리스 노트</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">지원</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >도움말 센터</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >문의하기</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >개인정보처리방침</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >서비스 약관</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">소식 받기</h4>
+            <p class="text-gray-400 mb-4">최신 업데이트와 팁을 받아보세요</p>
+            <form
+              action="https://formspree.io/f/mblyeawn"
+              method="POST"
+              class="flex"
+            >
+              <input
+                type="email"
+                name="email"
+                placeholder="이메일을 입력하세요"
+                class="flex-1 px-4 py-2 bg-gray-800 border border-gray-700 rounded-l-lg focus:outline-none focus:border-primary"
+                required
+              />
+              <button
+                type="submit"
+                class="bg-primary px-4 py-2 rounded-r-lg hover:bg-primary/90 transition-colors"
+              >
+                구독
+              </button>
+            </form>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400"
+        >
+          <p>&copy; 2024 BestShot AI. 모든 권리 보유.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Email Collection Modal -->
+    <div
+      id="emailModal"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
+    >
+      <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 relative">
+        <button
+          id="closeModal"
+          class="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+        >
+          <i class="fas fa-times text-xl"></i>
+        </button>
+        <div class="text-center mb-6">
+          <i class="fas fa-rocket text-primary text-4xl mb-4"></i>
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">
+            베스트샷 AI 출시 알림
+          </h3>
+          <p class="text-gray-600">서비스 출시 시 가장 먼저 알려드릴게요!</p>
+        </div>
+        <form
+          id="earlyAccessForm"
+          action="https://formspree.io/f/mblyeawn"
+          method="POST"
+          class="space-y-4"
+        >
+          <input type="hidden" name="form_type" value="early_access" />
+          <div>
+            <label
+              for="modal-email"
+              class="block text-sm font-medium text-gray-700 mb-2"
+              >이메일 주소</label
+            >
+            <input
+              type="email"
+              id="modal-email"
+              name="email"
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              placeholder="your@email.com"
+            />
+          </div>
+          <div>
+            <label
+              for="modal-name"
+              class="block text-sm font-medium text-gray-700 mb-2"
+              >이름 (선택)</label
+            >
+            <input
+              type="text"
+              id="modal-name"
+              name="name"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              placeholder="홍길동"
+            />
+          </div>
+          <div class="flex items-center">
+            <input
+              type="checkbox"
+              id="newsletter"
+              name="newsletter"
+              class="mr-2"
+            />
+            <label for="newsletter" class="text-sm text-gray-600"
+              >업데이트 소식과 팁을 받아보고 싶어요</label
+            >
+          </div>
+          <button
+            type="submit"
+            class="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
+          >
+            <i class="fas fa-bell mr-2"></i>출시 알림 받기
+          </button>
+        </form>
+        <p class="text-xs text-gray-500 text-center mt-4">
+          언제든지 구독을 해지할 수 있습니다. 개인정보는 안전하게 보호됩니다.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // Modal functionality
+      const modal = document.getElementById("emailModal");
+      const closeModal = document.getElementById("closeModal");
+      const getStartedButtons = document.querySelectorAll(
+        "#getStartedNav, #getStartedHero"
+      );
+      const watchDemoButton = document.getElementById("watchDemo");
+      const earlyAccessForm = document.getElementById("earlyAccessForm");
+
+      // Open modal when "무료로 시작하기" buttons are clicked
+      getStartedButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          modal.classList.remove("hidden");
+          document.body.style.overflow = "hidden";
+        });
+      });
+
+      // Close modal
+      closeModal.addEventListener("click", () => {
+        modal.classList.add("hidden");
+        document.body.style.overflow = "auto";
+      });
+
+      // Close modal when clicking outside
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.classList.add("hidden");
+          document.body.style.overflow = "auto";
+        }
+      });
+
+      // Watch Demo button - show simple alert for now
+      watchDemoButton.addEventListener("click", () => {
+        alert(
+          "데모 영상은 곧 공개될 예정입니다! 출시 알림을 받으시면 가장 먼저 소식을 전해드릴게요."
+        );
+      });
+
+      // Handle form submission
+      earlyAccessForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        // Get form data
+        const formData = new FormData(earlyAccessForm);
+
+        // Submit to Formspree
+        fetch("https://formspree.io/f/mblyeawn", {
+          method: "POST",
+          body: formData,
+          headers: {
+            Accept: "application/json",
+          },
+        })
+          .then((response) => {
+            if (response.ok) {
+              // Success
+              modal.innerHTML = `
+                        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 relative text-center">
+                            <i class="fas fa-check-circle text-green-500 text-6xl mb-4"></i>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">등록 완료!</h3>
+                            <p class="text-gray-600 mb-6">베스트샷 AI 출시 소식을 가장 먼저 알려드릴게요. 감사합니다!</p>
+                            <button id="closeSuccessModal" class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                                확인
+                            </button>
+                        </div>
+                    `;
+
+              // Add close functionality to success modal
+              document
+                .getElementById("closeSuccessModal")
+                .addEventListener("click", () => {
+                  modal.classList.add("hidden");
+                  document.body.style.overflow = "auto";
+                });
+            } else {
+              alert("등록 중 오류가 발생했습니다. 다시 시도해주세요.");
+            }
+          })
+          .catch((error) => {
+            alert("등록 중 오류가 발생했습니다. 다시 시도해주세요.");
+          });
+      });
+
+      // FAQ Toggle Functionality
+      document.querySelectorAll(".faq-toggle").forEach((button) => {
+        button.addEventListener("click", () => {
+          const content = button.nextElementSibling;
+          const icon = button.querySelector("i");
+
+          if (content.classList.contains("hidden")) {
+            content.classList.remove("hidden");
+            icon.style.transform = "rotate(180deg)";
+          } else {
+            content.classList.add("hidden");
+            icon.style.transform = "rotate(0deg)";
+          }
+        });
+      });
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Navbar scroll effect
+      window.addEventListener("scroll", () => {
+        const navbar = document.querySelector("nav");
+        if (window.scrollY > 50) {
+          navbar.classList.add("shadow-lg");
+        } else {
+          navbar.classList.remove("shadow-lg");
+        }
+      });
+
+      // Close modal with Escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+          modal.classList.add("hidden");
+          document.body.style.overflow = "auto";
+        }
+      });
+    </script>
+  </body>
+</html>
